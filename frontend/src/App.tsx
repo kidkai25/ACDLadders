@@ -22,6 +22,7 @@ import {
 import Footer from "./components/Footer";
 
 import { toast } from "react-toastify";
+import Comparer from "./components/Comparer";
 
 function App() {
   const [user, setUser] = useState<string>("");
@@ -40,7 +41,9 @@ function App() {
 
   const [selected, setSelected] = useState(1200);
 
-  const [tag, setTag] = useState(false)
+  const [tag, setTag] = useState(false);
+
+  const [isChecked, setChecked] = useState(false); 
 
 
   const loadUser = async () => {
@@ -54,6 +57,7 @@ function App() {
         },
       });
       const userInfo = userDataRes.result[0];
+      console.log(userInfo);
       setUserData({
         handle: userInfo.handle,
         image: userInfo.avatar,
@@ -170,6 +174,8 @@ function App() {
             </div>
           </div>
         </div>
+        
+        <Comparer  problemStatusMap={problemStatusMap} userData={userData} userStats={userStats}  isChecked={tag}/>
 
         <UserCard userData={userData} userStats={userStats} />
 
